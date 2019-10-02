@@ -1,7 +1,7 @@
 <?php
 session_start();
 try {
-        $pdo = new PDO('mysql:host=localhost;charset=utf8;dbname=mini_bbs', 'admin', 'pass');
+        $pdo = new PDO('mysql:host=mysql1.php.xdomain.ne.jp;charset=utf8;dbname=test00008_minibbs', 'test00008_admin', 'pomtom89');
         $stmt = $pdo->prepare('select * from members where user_name = ?');
         $stmt->execute([$_POST['user_name']]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -13,10 +13,7 @@ if (!isset($row['user_name'])) {
     echo 'ユーザー名又はパスワードが間違っています。1';
     return false;
 }
-#print($row['pass']);
-#print($_POST['pass']);
 if ($_POST['pass'] = $row['pass']){
-    #session_regenerate_id(true); //session_idを新しく生成し、置き換える
     $_SESSION['user_name'] = $row['user_name'];
 } else {
     echo 'メールアドレス又はパスワードが間違っています。2';

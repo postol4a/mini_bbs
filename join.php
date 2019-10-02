@@ -9,7 +9,7 @@
 </header>
 <main>
 <pre>
-<form action="connect_db.php" method="get">
+<form action="join_db.php" method="get">
     <label for="username">ユーザー名</label><br>
     <input type="text" name="username" size="35" maxlength="255" value="" required /><br>
     <label for="pass">パスワード</label><br>
