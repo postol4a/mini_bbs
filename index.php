@@ -49,10 +49,14 @@ $count=0;
 while($row = mysqli_fetch_array($res2)){
     $count+=1;
 }
-echo "全部で".$count."件の投稿があります。<br>";
+
 #ページ分割
-$page_limit = 10;
+$page_limit = 3;
 $page_offset = 0;
+
+echo "全部で".$count."件の投稿があります。<br>";
+echo $page_limit."件が表示されています。<br>";
+
 if(isset($_GET['page_limit'])){
     $page_limit = $_GET['page_limit'];
 }
@@ -68,15 +72,14 @@ while($row = mysqli_fetch_array($res)){
  } 
 $db_link->close();
 if($page_offset <= 0){
-    #echo "<a href=index.php?page_offset=0>";
     echo "次へ</a>";
 }else{
-    echo "<a href=index.php?page_offset=".($page_offset -2).">";
+    echo "<a href=index.php?page_offset=".($page_offset -$page_limit).">";
     echo "次へ</a>";
 }
 
-if($count / $page_limit > $page_offset){
-    echo "<a href=index.php?page_offset=".($page_offset +2).">";
+if($count > $page_offset + $page_limit and $count > $page_limit){
+    echo "<a href=index.php?page_offset=".($page_offset +$page_limit).">";
     echo "前へ</a>";
 }else{
     echo "前へ</a>";
